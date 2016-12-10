@@ -1,6 +1,3 @@
-var map = L.map('map').setView([52.520008, 13.404954], 4);
-var value_ds = 0;
-var legend = L.control({position: 'bottomright'});
 var URIs = ["data/geojson/AUT.geo.json", "data/geojson/BEL.geo.json", "data/geojson/BGR.geo.json", 
            "data/geojson/CYP.geo.json", "data/geojson/CZE.geo.json", "data/geojson/DEU.geo.json",
            "data/geojson/DNK.geo.json", "data/geojson/ESP.geo.json", "data/geojson/EST.geo.json", 
@@ -23,29 +20,24 @@ function getColor(d) {
                       '#FFEBD6';
 };
 
-function style(value) {
+function style(ValueForColor) {
     return {
-        fillColor: getColor(value),
+        fillColor: getColor(ValueForColor),
         weight: 2,
         opacity: 1,
         color: 'white',
         fillOpacity: 0.65
     };
-}
-
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJnb25lIiwiYSI6ImNpdzJidTR6bTAwMXAyeW15N3hsa2c0NnIifQ.KPL00OFjX6lRS8W5yN0eYA', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 5,    
-}).addTo(map);
+};
 
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 12.5, 25, 37.5, 50, 87.5, 100],
         labels = [];           
-    for (var i = 0; i < grades.length; i++) {        
+    for (i = 0; i < grades.length; i++) {        
         div.innerHTML +=
             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + " " + (grades[i + 1] ? '&ndash; ' + grades[i + 1] + '<br>' : '+');
+            grades[i] + ' ' + (grades[i + 1] ? '&ndash; ' + grades[i + 1] + '<br>' : '');
     }
     return div;
 };
@@ -53,20 +45,21 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 function addDataToMap(data, map) {    
-    var current = data_series[value_ds++];
-    var dataLayer = L.geoJson(data, {
-        style: style(current),              
+    dataLayer = L.geoJson(data, {
+        style: style(DataSeries[0]),              
         onEachFeature: function(feature, layer) {        
-            var popupText = "<b>" + feature.properties.name + "</b>"
+            popupText = "<b>" + feature.properties.name + "</b>"
                 + "<br>Code: " + feature.id
-                + "<br>Value: " + ((current*1).toFixed(2));
+                + "<br>Value: " + (DataSeries[0]*1).toFixed(2);
             layer.bindPopup(popupText); }
         });
     dataLayer.addTo(map);
 }
 
+$(document).ready(finito);
 
-for (let URI of URIs) {
+function finito() {
+for (URI of URIs) {    
     $.getJSON(URI, function(data) { addDataToMap(data, map); });
 }
-
+};
