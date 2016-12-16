@@ -9,6 +9,8 @@ var URIs = ["data/geojson/AUT.geo.json", "data/geojson/BEL.geo.json", "data/geoj
            "data/geojson/ROU.geo.json", "data/geojson/SVK.geo.json", "data/geojson/SVN.geo.json", 
            "data/geojson/SWE.geo.json"];
 
+var featureLayerCollection = []; //For clearing geojson tiles
+
 function getColor(d) {
     return d > 1000 ? '#800026' :
            d > 500  ? '#BD0026' :
@@ -44,22 +46,30 @@ legend.onAdd = function (map) {
 
 legend.addTo(map);
 
+var JSONcounter = 0;
 function addDataToMap(data, map) {    
     dataLayer = L.geoJson(data, {
-        style: style(DataSeries[0]),              
-        onEachFeature: function(feature, layer) {        
+        style: style(DataSeries[JSONcounter]),              
+        onEachFeature: function(feature, layer) {            
             popupText = "<b>" + feature.properties.name + "</b>"
                 + "<br>Code: " + feature.id
-                + "<br>Value: " + (DataSeries[0]*1).toFixed(2);
+                + "<br>Value: " + (DataSeries[JSONcounter++]*1).toFixed(2);
             layer.bindPopup(popupText); }
         });
     dataLayer.addTo(map);
+    featureLayerCollection.push(dataLayer);
 }
 
-$(document).ready(finito);
-
-function finito() {
-for (URI of URIs) {    
-    $.getJSON(URI, function(data) { addDataToMap(data, map); });
+function LoadMap() {    
+    ClearMapLayers();
+    for (URI of URIs) { $.getJSON(URI, function(data) { addDataToMap(data, map); }); }
+    JSONcounter = 0;
 }
-};
+
+function ClearMapLayers() {
+    for (var i = 0; i < featureLayerCollection.length; i++) {       
+            map.removeLayer(featureLayerCollection[i]); 
+        }        
+        featureLayerCollection.length = 0;
+}
+
