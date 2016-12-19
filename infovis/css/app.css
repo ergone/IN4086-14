@@ -51,6 +51,18 @@ footer, header {
     padding: 2.5%;    
 }
 
+#cpanel-header, #cpanel-graphs-header {
+    height: 35px;
+}
+
+#cpanel-map, #cpanel-line {
+    height: 70px;    
+}
+
+#cpanel-graphs {
+    height: 60%;
+}
+
 .break {
     height: 2.5vh;
 }
@@ -84,38 +96,19 @@ footer, header {
     border-bottom-right-radius: 25px;
 }
 
-/* D3 Graphs */
-.bar {
-  fill: #ff7800;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
-.axis--x path {
-  display: none;
-}
-
-.wfont {
-    color: #fff;
-}
-
-.line {
-  fill: none;
-  stroke: #ff7800;
-  stroke-width: 1.5px;
-}
-
 .legend {
-    line-height: 18px;
+    line-height: 20px;
     color: #FFF;
 }
+
 .legend i {
-    width: 18px;
-    background-color: #fff;
-    height: 18px;
+    width: 20px;
+    height: 20px;    
     float: left;
-    margin-right: 8px;
-    opacity: 0.7;
+    margin-right: 10px; 
+    opacity: 0.65;  
+}
+
+.legend p {
+    text-align: center;
 }

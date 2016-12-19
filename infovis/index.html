@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IN4086-14 InfoVis Project</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/leaflet.css" />   
@@ -21,47 +22,46 @@
         </div>
         <div class="break row"></div>
         <div id="lc-lower-row" class="row black-transparent-background text-center">
-          <div class="row">
+          <div id="cpanel-header" class="row">
             <p class="zero-margins">CONTROL PANEL</p>
+          </div>
+          <div id="cpanel-map" class="row">          
+            <div class="small-8 columns">
+              <label style="color: #fff">Category (Map)
+                <select id="selectable"></select>
+              </label>
+            </div> 
+            <div class="small-4 columns">
+              <label style="color: #fff">Year (Map)
+                <select id="selectable2"></select>
+              </label>
+            </div>           
+          </div>
+          <div id="cpanel-line" class="row">
+            <div class="small-12 columns">
+              <label style="color: #fff">Category (Line Chart)
+                <select id="selectable3"></select>
+              </label>
+            </div> 
+          </div>
+          <!--
+          <div id="cpanel-graphs-header" class="row hide-for-medium-up">
+            <p class="zero-margins">AUXILIARY GRAPHS</p>
+          </div>
+          <div id="cpanel-graph" class="row show-for-large-up">
+            DEV PHASE
           </div>          
-          <div class="break row"></div>
-          <div id="lcl-left-col" class="small-4 columns">
-            <div class="row">
-              <p class="zero-margins">MAP</p>
-            </div>
-            <div class="break row"></div>  
-            <div class="row">
-              <div class="small-8 columns">
-                <label>Category
-                  <select id="selectable"></select>
-                </label>
-              </div> 
-              <div class="small-4 columns">
-                <label style="color: #fff">Year
-                  <select id="selectable2"></select>
-                </label>
-              </div>             
-            </div>       
-          </div> 
-          <div id="lcl-middle-col" class="small-4 columns">
-            <div class="row">
-              <p class="zero-margins">UPPER GRAPH</p>
-            </div>
-          </div>
-          <div id="lcl-right-col" class="small-4 columns">
-            <div class="row">
-              <p class="zero-margins">LOWER GRAPH</p>
-            </div>
-          </div>
+          -->            
+          
         </div>      
       </div>
       <div id="right-column" class="small-12 large-6 columns">
         <div id="rc-upper-row" class="row black-transparent-background">
-          <svg id="upper-chart"></svg>
+          <div id="upper-chart"></div> <!-- SVG -->
         </div>
         <div class="break row"></div>
         <div id="rc-lower-row" class="row black-transparent-background">
-          <svg id="lower-chart"></svg>
+          <svg id="lower-chart"></svg> <!-- SVG -->
         </div>
       </div>  
     </div>    
@@ -72,10 +72,12 @@
     </footer>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>    
+    <script src="js/vendor/foundation.js"></script> 
+     
     <script src="js/leaflet.js"></script>
     <script src="js/app.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/interaction.js"></script>
     <script src="js/upper-chart.js"></script>
     <script src="js/lower-chart.js"></script>
   </body>
