@@ -1,3 +1,6 @@
+<!-- Created and maintained by Piotr Tekieli -->
+<!-- Last modification on 21.12.2016 by Piotr & Nuha -->
+<!-- For best experience use 16:9(+) displays with resolution 1366x768(+) -->
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
@@ -5,80 +8,97 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IN4086-14 InfoVis Project</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/leaflet.css" />   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script> <!-- For handling D3 -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script> <!-- For handling Google Charts -->
+    <link rel="stylesheet" href="css/foundation.css" />   
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />   
   </head>
   <body>
+    <!-- HEADER -->
     <header class="expanded row text-center black-transparent-background cut-lower-corners">
       <p class="zero-margins">IN4086-14 InfoVis Project</p>
-    </header>    
+    </header> 
+    <!-- /HEADER -->
+
+    <!-- CONTENT WRAPPER -->   
     <div id="content-wrapper" class="expanded row">
+      <!-- LEFT COLUMN -->
       <div id="left-column" class="small-12 large-6 columns">
+        <!-- UPPER LEFT -->
         <div id="lc-upper-row" class="row black-transparent-background">
           <div id='map'></div>
         </div>
         <div class="break row"></div>
+        <!-- LOWER LEFT -->
         <div id="lc-lower-row" class="row black-transparent-background text-center">
-          <div id="cpanel-header" class="row">
-            <p class="zero-margins">CONTROL PANEL</p>
+          <div id="cpanel-header" class="row" style="height: 50%; display: table">
+            <p class="zero-margins" style="display: table-cell; vertical-align: middle;">CONTROL PANEL</p>
           </div>
-          <div id="cpanel-map" class="row">          
+          <div id="cpanel-map" class="row" style="height: 50%;">          
             <div class="small-8 columns">
-              <label style="color: #fff">Category (Map)
+              <label style="color: #fff">Category
                 <select id="selectable"></select>
               </label>
             </div> 
             <div class="small-4 columns">
-              <label style="color: #fff">Year (Map)
+              <label style="color: #fff">Year
                 <select id="selectable2"></select>
               </label>
             </div>           
-          </div>
-          <div id="cpanel-line" class="row">
-            <div class="small-12 columns">
-              <label style="color: #fff">Category (Line Chart)
-                <select id="selectable3"></select>
-              </label>
-            </div> 
-          </div>
-          <!--
-          <div id="cpanel-graphs-header" class="row hide-for-medium-up">
-            <p class="zero-margins">AUXILIARY GRAPHS</p>
-          </div>
-          <div id="cpanel-graph" class="row show-for-large-up">
-            DEV PHASE
-          </div>          
-          -->            
-          
+          </div>         
         </div>      
       </div>
+      <!-- /LEFT COLUMN -->
+      <!-- RIGHT COLUMN -->
       <div id="right-column" class="small-12 large-6 columns">
+        <!-- UPPER RIGHT = DIVS FOR GOOGLE CHART -->
         <div id="rc-upper-row" class="row black-transparent-background">
-          <div id="upper-chart"></div> <!-- SVG -->
+          <div id="upper-chart"></div>
         </div>
         <div class="break row"></div>
+        <!-- LOWER RIGHT = DIV/SVG FOR APPENDING D3 LINE CHART -->
         <div id="rc-lower-row" class="row black-transparent-background">
-          <svg id="lower-chart"></svg> <!-- SVG -->
+          <!-- Chart title and reset button (added by Nuha) -->
+          <div class="row toppad">
+            <div class="small-9 large-10 columns">
+              <h5 id="chart-title"></h5>
+            </div>
+            <div class="small-3 large-2 columns">
+              <button type="button" class="btn btn-success sserif btnrst">Reset</button>
+            </div>
+          </div>
+          <!-- Change the parameters here (added by Nuha) -->
+          <form>
+            <input id="curr-series-code" type="hidden" value="SL.EM.TOTL.NE.ZS.V"></input>
+            <input id="curr-country-code" type="hidden" value="ALL"></input>
+            <input id="curr-year" type="hidden" value="2000"></input>
+          </form>
         </div>
-      </div>  
+      </div>
+      <!-- /RIGHT COLUMN -->  
     </div>    
+    <!-- /CONTENT WRAPPER -->
+
+    <!-- FOOTER -->    
     <footer class="expanded row text-center black-transparent-background cut-upper-corners">      
       <div class="small-4 large-4 columns"><p class="zero-margins">P.S. TEKIELI (4522397)</p></div>
-      <div class="small-4 large-4 columns"><p class="zero-margins">K.A. LOURENS (0123456)</p></div>
-      <div class="small-4 large-4 columns"><p class="zero-margins">ULIN MOHAMAT ULIN NUHA (0123456)</p></div>      
+      <div class="small-4 large-4 columns"><p class="zero-margins">M.U. NUHA (4620747)</p></div>
+      <div class="small-4 large-4 columns"><p class="zero-margins">K.A. LOURENS (1504606)</p></div>        
     </footer>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script> 
-     
-    <script src="js/leaflet.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/interaction.js"></script>
-    <script src="js/upper-chart.js"></script>
-    <script src="js/lower-chart.js"></script>
+    <!-- /FOOTER --> 
+
+    <!-- JS FILES -->
+    <script src="js/vendor/jquery.js"></script> <!-- For additional functionality / introducing interaction -->
+    <script src="js/vendor/what-input.js"></script> <!-- A global utility for tracking the current input method -->
+    <script src="js/vendor/foundation.js"></script> <!-- CSS Framework -->      
+    <script src="js/leaflet.js"></script> <!-- Map library -->
+    <script src="js/bootstrap.js"></script> <!-- For line chart (added by Nuha) -->
+    <script src="js/app.js"></script> <!-- Main js "engine", responsible for data retrieval and processing -->
+    <script src="js/map.js"></script> <!-- Responsible for map module -->    
+    <script src="js/upper-chart.js"></script> <!-- For handling upper graph (stacked bar chart) -->
+    <script src="js/lower-chart.js"></script> <!-- For handling lower graph (line chart) -->
+    <script src="js/interaction.js"></script> <!-- For introducing interaction through jquery -->    
   </body>
 </html>

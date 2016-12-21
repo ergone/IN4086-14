@@ -1,6 +1,8 @@
 google.charts.load('current', {'packages':['corechart'], 'language': 'en'});
 google.charts.setOnLoadCallback(drawChart);
 
+var UCdata = null;
+
 function drawChart() {  
   stackedbar_data = [];
   stackedbar_data.length = 0;
@@ -19,11 +21,20 @@ function drawChart() {
   }
   else {
     return;
-  }
+  };
 
-  for (value of AuxIndexTable) {
-    stackedbar_data.push([AvailableNumericSeries[value]["country_code"], AvailableNumericSeries[value + 2][ActiveYear], AvailableNumericSeries[value + 1][ActiveYear]]);  
+  if (UCdata === null) {
+    for (value of AuxIndexTable) {
+      stackedbar_data.push([AvailableNumericSeries[value]["country_code"], AvailableNumericSeries[value + 2][ActiveYear], AvailableNumericSeries[value + 1][ActiveYear]]);  
+    };
   }
+  else {
+    for (value of UCdata) {
+      stackedbar_data.push(value);
+    }
+  };
+
+  data = null;
 
   var options = {
     width: '100%',

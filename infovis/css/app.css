@@ -1,6 +1,8 @@
+/* Created and maintained by Piotr Tekieli */
+/* Last modification on 21.12.2016 by Nuha (L127 - L168) */
+
 html, body {
-    height: 100vh; /* 100% of Viewport Height */  
-    /*background-image: url("../assets/background.jpg");*/
+    height: 100vh; /* 100% of Viewport Height */    
     background: #4B79A1; /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #4B79A1 , #283E51); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #4B79A1 , #283E51); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -34,8 +36,17 @@ footer, header {
     padding-right: 2.5vh;
 }
 
-#lc-upper-row, #lc-lower-row, #rc-upper-row, #rc-lower-row {
+#rc-upper-row, #rc-lower-row {
     height: 43.5vh;    
+}
+
+#lc-upper-row {
+    height: 67vh
+}
+
+
+#lc-lower-row {
+    height: 20vh;
 }
 
 
@@ -112,8 +123,6 @@ footer, header {
 .legend p {
     text-align: center;
 }
-
-
 
 .axis .tick {
     fill: rgb(255, 255, 255);

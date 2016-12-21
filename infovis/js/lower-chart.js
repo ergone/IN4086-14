@@ -1,3 +1,6 @@
+/* Created and maintained by M.U. Nuha */
+/* Last modification on 21.12.2016 by Nuha */
+
 // declare variables
 var thedata;
 var currentUrl;
