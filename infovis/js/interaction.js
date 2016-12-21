@@ -17,7 +17,7 @@ $('#selectable2').on('change', function() {
 });
 
 
-// set current selection (selected country, year)
+// change line chart to selected country when one of the lines is clicked
 function lineChartClick(d) {
     // set parameters
     $("#curr-country-code").val(d.name);
@@ -29,6 +29,15 @@ function lineChartClick(d) {
     
     // draw bar chart
     drawChart();
+
+    // draw line chart
+    drawLineChart();
+}
+
+// change line chart to selected country when the map is clicked
+function mapToLineChartClick(countryCode){
+    // set country code
+    $("#curr-country-code").val(countryCode);
 
     // draw line chart
     drawLineChart();
