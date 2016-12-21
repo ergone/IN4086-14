@@ -40,8 +40,8 @@ function addDataToMap(data, map) {
         onEachFeature: function(feature, layer) {            
             popupText = "<b>" + feature.properties.name + "</b>"
                 + "<br>Code: " + feature.id
-                + "<br>Value: " + (DataSeries[JSONcounter++]*1).toFixed(2);
-               // + "<br>-> <b>Highlight<b>";
+                + "<br>Value: " + (DataSeries[JSONcounter++]*1).toFixed(2)
+                + "<br><button class=\"btn btn-primary\" onclick=\"mapToLineChartClick('" + feature.id + "')\">Highlight<button>";
             layer.bindPopup(popupText); }
         });
     dataLayer.addTo(map);
@@ -88,4 +88,3 @@ function ClearMapLayers() {
         }        
         LayerCollection.length = 0;
 }
-

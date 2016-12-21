@@ -45,7 +45,7 @@ return this.replace(new RegExp('[' + search + ']', 'g'), replace);
 
 // set margins
 var margin = {top: 20, right: 60, bottom: 30, left: 70},
-    width  = 800 - margin.left - margin.right,
+    width  = 750 - margin.left - margin.right,
     height = 300  - margin.top  - margin.bottom;
 
 // set range for x and y axis
