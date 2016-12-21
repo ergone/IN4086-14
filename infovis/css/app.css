@@ -112,3 +112,48 @@ footer, header {
 .legend p {
     text-align: center;
 }
+
+
+
+.axis .tick {
+    fill: rgb(255, 255, 255);
+    color: #FFF;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.axis line{
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1px;
+  fill: rgb(255, 255, 255);
+}
+
+.axis path{
+  fill: rgb(255,255,255);
+}
+
+.axis text{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #fff;
+  fill: rgb(255,255,255);
+}
+
+.sserif {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #fff;
+    fill: rgb(255, 255, 255);
+}
+
+.axisclass {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 2px;
+  fill: rgb(255, 255, 255);
+}
+
+.toppad {
+    padding-top: 10px;
+}
+
+#chart-title {
+    padding-left:60px; 
+    color: #fff
+}
